@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Socket.IO Example</title>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/style/style.css">
+  </head>
+  <body ms-controller="socketChat">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#hide_nav">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#" class="navbar-brand">socket 聊天室</a>
+        </div>
+        <div class="collapse navbar-collapse" id="hide_nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active">
+              <a href="javascript:;"><i class="glyphicon glyphicon-user"></i> 人工云客服</a>
+            </li>
+            <li>
+              <a href="javascript:;"><i class="glyphicon glyphicon-th-list"></i> 服务中心</a>
+            </li>
+            <li>
+              <a href="javascript:;" ms-click="login">登录</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="tip">{{tip}}</div>
+    <div>当前在线人数：<span>{{userNum}}</span></div>
+    <div>在线用户列表：</div>
+    <ul>
+      <li ms-repeat="userOnlineList"><i class="glyphicon glyphicon-user"></i>  {{el.userName}}</li>
+    </ul>
+    <!-- Modal -->
+    <div id="loginModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+            <h4 class="modal-title">登录--请先输入你的昵称</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-inline">
+              <div class="form-group has-feedback" ms-class="has-error: state.submitState==0">
+                <label class="label-control">昵称：</label>
+                <input type="text" ms-duplex="userName" class="form-control">
+                <button type="submit" href="javascript:;" class="btn btn-primary" ms-click="send">提交</button>
+                <!-- <a href="javascript:;" ms-click="send">提交</a> -->
+                <span class="help-block">{{state.submitStateText}}</span>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取  消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script type="text/javascript" src="http://static.uc108.com/cdn/require/2.1.22/require.min.js"></script>
+  <script type="text/javascript" src="/static/js/config.js"></script>
+  <script type="text/javascript" src="/static/js/main.js"></script>
+  </body>
+</html>

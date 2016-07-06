@@ -1,0 +1,12 @@
+body{
+	font-family: 'Microsoft Yahei';
+}
+.tip{
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+ul{
+	list-style: none;
+	padding-left: 20px;
+}
