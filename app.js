@@ -59,7 +59,7 @@ var IO = {
 IO.init();
 
 function goIndex(req, res) {
-	var readPath = __dirname + '/' + url.parse('index.html').pathname;
+	var readPath = __dirname + '/views/' + url.parse('index.html').pathname;
 	var page = fs.readFileSync(readPath);
 	res.writeHead(200, {'Content-Type': 'text/html;charset="utf-8"'});
 	res.end(page);

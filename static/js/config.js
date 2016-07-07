@@ -9,12 +9,14 @@ require.config({
 		'socket': '/socket.io/socket.io',
 		'datepicker':'http://static.uc108.com/cdn/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min',
 		'datepicker-zh-CN':'http://static.uc108.com/cdn/bootstrap-datetimepicker/3.0.0/js/locales/bootstrap-datetimepicker.zh-CN',
-		'page':'http://static.uc108.com/cdn/bootstrap-page/1.0.0/page.min'
+		'page':'http://static.uc108.com/cdn/bootstrap-page/1.0.0/page.min',
+		'scrollbar': '/static/lib/jquery.tinyscrollbar'
 	},
 	shim: {
 		'bootjs': ['jquery'],
 		'datepicker': ['jquery', 'bootjs', 'css!http://static.uc108.com/cdn/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css'],
 		'datepicker-zh-CN': ['datepicker'],
-		'page': ['jquery']
+		'page': ['jquery'],
+		'scrollbar': ['jquery']
 	}
 })

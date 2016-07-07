@@ -10,3 +10,10 @@ ul{
 	list-style: none;
 	padding-left: 20px;
 }
+.chat-panel .panel-body{
+	height: 400px;
+	margin-bottom: 0;
+}
+.chat-side{
+	height: 100%;
+}

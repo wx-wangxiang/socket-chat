@@ -1,15 +1,25 @@
-require(['avalon', 'jquery', 'bootjs', 'socket'], function(avalon, $) {
+require(['avalon', 'jquery', 'bootjs', 'socket', 'scrollbar'], function(avalon, $) {
 var vm, 
-		Socket,
-		socket = io.connect('http://127.0.0.1:1337'),
-		Navbar;
+	Socket,
+	socket = io.connect('http://127.0.0.1:1337'),
+	Navbar,
+	Scrollbar;
 
 	vm = avalon.define({
 		$id: 'socketChat',
 		tip: '',
-		userNum: '',
+		userNum: '0',
 		userName: '',
 		userOnlineList: [],
+		messageList: [
+		{
+			message: '很高兴遇到你！',
+			position: 'left'
+		},
+		{
+			message: 'hello nice to meet you too!',
+			position: 'right'
+		}],
 		login: function() {
 			Navbar.login();
 		},
@@ -22,13 +32,13 @@ var vm,
 			submitState: '1'
 		}
 	});
-
+/*--------------------------------------导航条----------------------------------*/
 	Navbar = {
 		login: function() {
 			Modal.show();
 		}
 	};
-
+/*---------------------------------------弹出框----------------------------------*/
 	Modal = {
 		submit: function() {
 			var _this = this,
@@ -57,29 +67,21 @@ var vm,
 			$('#loginModal').modal('show');
 		}
 	}
-
+/*-------------------------------------------socket------------------------------*/
 	Socket = {
 		init: function() {
-			/*socket.on('msg', function(data) {
-				vm.state.submitStateText = data.message;
-				vm.state.submitState = data.state;
-        vm.tip = data.message;
-        if(data.state) {
-					setTimeout(function() {
-						Modal.hide();
-					}, 500);
-				}else{
-					return false;
-				}
-        vm.userNum = data.userNum;
-      });*/
-      socket.on('users', function(data) {
-        vm.userNum = data.userNum;
-        vm.userOnlineList = data.userOnlineList;
-      })
+	        socket.on('users', function(data) {
+	            vm.userNum = data.userNum;
+	            vm.userOnlineList = data.userOnlineList;
+	        })
 		}
 	}
-
-	//Socket.init();
+/*------------------------------------------滚动条-------------------------------*/
+	Scrollbar = {
+		init: function() {
+			$('#scrollbar').tinyscrollbar();
+		}
+	}
+	Scrollbar.init();
 	avalon.scan();
 })
