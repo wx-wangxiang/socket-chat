@@ -22,9 +22,9 @@ var IO = {
 		var _this = this;
 		io = require('socket.io').listen(server, {'log': false});
 		io.sockets.on('connection', function (socket) {
-			socket.on('users', function(data, callback) {
+			socket.on('users', function (data, callback) {
 
-				var enable = _this.userOnlineList.every(function(item, index) {
+				var enable = _this.userOnlineList.every(function (item, index) {
 					if(item.userName != data.userName) {
 						return true;
 					}
@@ -41,6 +41,11 @@ var IO = {
 					callback({message: '该昵称已存在', state: 0, userNum: '--'});
 				}
 			});
+			socket.on('msg', function (data, callback) {
+				console.log('msg:' + data.message);
+				callback({message: data.message, userName: data.userName});
+				socket.broadcast.emit('msg', {message: data.message, userName: data.userName, method: 'res'});
+			})
 			socket.on('disconnect', function () {
 				_this.userOnlineList.forEach(function(item, index) {
 					if(item.userName == socket.name) {

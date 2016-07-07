@@ -11,21 +11,31 @@ var vm,
 		userNum: '0',
 		userName: '',
 		userOnlineList: [],
+		message: '',
 		messageList: [
-		{
+		/*{
 			message: '很高兴遇到你！',
-			position: 'left'
+			userName: 'wang'
 		},
 		{
 			message: 'hello nice to meet you too!',
-			position: 'right'
-		}],
+			userName: 'xiang'
+		},
+		{
+			message: 'O(∩_∩)O哈哈~',
+			userName: 'wang'
+		}*/],
 		login: function() {
 			Navbar.login();
 		},
-		send: function(e) {
+		sendName: function(e) {
 			e.preventDefault();
 			Modal.submit();
+		},
+		sendMessage: function(e) {
+			e.preventDefault();
+			Comment.send();
+			console.log(vm.message);
 		},
 		state: {
 			submitStateText: '',
@@ -42,7 +52,7 @@ var vm,
 	Modal = {
 		submit: function() {
 			var _this = this,
-					ID = Math.random().toString().replace('.', '_');
+				ID = Math.random().toString().replace('.', '_');
 			socket.emit('users', {'userName': vm.userName, 'id': ID}, function (data) {
 				vm.state.submitStateText = data.message;
 				vm.state.submitState = data.state;
@@ -67,12 +77,33 @@ var vm,
 			$('#loginModal').modal('show');
 		}
 	}
+/*----------------------------------------聊天窗口--------------------------------------*/
+	Comment = {
+		send: function() {
+			socket.emit('msg', {message: vm.message, userName: vm.userName, method: 'req'}, function (data) {
+				vm.messageList.push({
+					message: data.message,
+					userName: data.userName
+				});
+				console.log(data.message);
+				console.log(data.userName);
+			} )
+		}
+	}
 /*-------------------------------------------socket------------------------------*/
 	Socket = {
 		init: function() {
-	        socket.on('users', function(data) {
+	        socket.on('users', function (data) {
 	            vm.userNum = data.userNum;
 	            vm.userOnlineList = data.userOnlineList;
+	        });
+	        socket.on('msg', function (data) {
+	        	if(data.method == 'res') {
+	        		vm.messageList.push({
+	        			message: data.message,
+	        			userName: data.userName
+	        		});
+	        	}
 	        })
 		}
 	}
