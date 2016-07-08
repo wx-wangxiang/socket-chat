@@ -1,7 +1,7 @@
 require(['avalon', 'jquery', 'bootjs', 'socket', 'scrollbar'], function(avalon, $) {
 var vm, 
 	Socket,
-	socket = io.connect('http://192.168.7.205:1337'),
+	socket = io.connect('http://127.0.0.1:1337'),
 	Navbar,
 	Scrollbar;
 
