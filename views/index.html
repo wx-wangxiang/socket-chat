@@ -56,7 +56,7 @@
                     <li class="media" ms-if="el.userName != userName">
                       <div class="media-left">
                         <a href="javascript:;">
-                          <img width="30" src="/static/images/avatars/avatar1.gif" class="media-object" alt="avatar">
+                          <img width="30" ms-attr-src="el.avatar" class="media-object" alt="avatar">
                         </a>
                       </div>
                       <div class="media-body">
@@ -69,7 +69,7 @@
                       </div>
                       <div class="media-right">
                         <a href="javascript:;">
-                          <img width="30" src="/static/images/avatars/avatar2.jpg" class="media-object" align="avatar">
+                          <img width="30" ms-attr-src="el.avatar" class="media-object" align="avatar">
                         </a>
                       </div>
                     </li>
@@ -83,7 +83,7 @@
                 <div class="input-group">
                   <input type="text" ms-duplex="message" class="form-control" placeholder="发送信息">
                   <span class="input-group-btn">
-                    <button type="button" class="btn btn-primary" ms-click="sendMessage"><i class="glyphicon glyphicon-send"></i> 发送</button>
+                    <button ms-attr-disabled="!userName" type="submit" class="btn btn-primary" ms-click="sendMessage"><i class="glyphicon glyphicon-send"></i> 发送</button>
                   </span>
                 </div>
                 <a href="javascript:;" class="control-label"><i class="glyphicon glyphicon-saved"></i> 保存聊天记录</a>
@@ -98,9 +98,6 @@
             <a href="javascript:;" class="list-group-item active" data-target="#userList" data-toggle="collapse">在线人员列表 {{userNum}} 人</a>
             <ul class="collapse in" id="userList">
               <li ms-repeat="userOnlineList"><i class="glyphicon glyphicon-user"></i>  {{el.userName}}</li>
-              <li><i class="glyphicon glyphicon-user"></i> wang sir</li>
-              <li><i class="glyphicon glyphicon-user"></i> xinag xiang</li>
-              <li><i class="glyphicon glyphicon-user"></i> wang wang</li>
             </ul>
             <a href="javascript:;" class="list-group-item" data-target="#message" data-toggle="collapse">相关内容</a>
             <div class="collapse" id="message">
