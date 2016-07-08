@@ -1,6 +1,6 @@
 # Connecting clients
 
-In this example a server is started and clients can connect at [http://127.0.0.0.1][1]. The server registers the connection and disconnection of users by logging to the console. The example deomonstrates how the server receives data from the clients via socket.io.
+In this example a server is started and clients can connect at [http://127.0.0.1][1]. The server registers the connection and disconnection of users by logging to the console. The example deomonstrates how the server receives data from the clients via socket.io.
 
 Install dependencies with 
     
